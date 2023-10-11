@@ -1,0 +1,969 @@
+Sub CmdClose_Click()
+
+  Unload Me
+End Sub
+
+ Sub Save_PropertyDetails()
+
+ThisWorkbook.Worksheets("New paperwork").Activate
+
+'==================================================
+' TRANSFER DATA TO WORKSHEET
+'==================================================
+ ActiveSheet.Range("B1").Value = PaperWorkForm.TxtAddress.Text
+ ActiveSheet.Range("B3").Value = TxtDate.Text
+ ActiveSheet.Range("B3").Select
+ Selection.NumberFormat = "dd/mm/yyyy"
+ Range("B4").Value = TxtRent.Text
+ Range("B4").Select
+ Selection.NumberFormat = "$#,##0.00"
+ Range("D4").Value = TxtDeposit.Text
+ Range("D4").Select
+ Selection.NumberFormat = "$#,##0.00"
+
+'===================================================
+' GET OPTION BUTTON VALUE
+'==================================================
+    
+    If OptOrient.Value = True Then
+     Range("B2").Value = "ORIENT"
+    
+    ElseIf OptAtlas.Value = True Then
+     Range("B2").Value = "ATLAS"
+    End If
+'===================================================
+' TRANSFER CHECKBOXES VALUE
+'===================================================
+
+  If CheckBox7 = True Then
+   Range("B5").Value = "Yes"
+   Else
+   Range("B5").Value = ""
+  End If
+  
+  If CheckBox8 = True Then
+   Range("B6").Value = "Yes"
+   Else
+   Range("B6").Value = ""
+  End If
+  
+  If CheckBox9 = True Then
+   Range("D6").Value = "Yes"
+   Else
+   Range("D6").Value = ""
+  End If
+  
+  If CheckBox10 = True Then
+   Range("B7").Value = "Yes"
+   Else
+   Range("B7").Value = ""
+  End If
+  
+  If CheckBox11 = True Then
+   Range("D7").Value = "Yes"
+   Else
+   Range("D7").Value = ""
+  End If
+  
+  If CheckBox12 = True Then
+   Range("B8").Value = "Yes"
+   Else
+   Range("B8").Value = ""
+  End If
+  
+  If CheckBox13 = True Then
+   Range("B9").Value = "Yes"
+   Else
+   Range("D9").Value = ""
+  End If
+  
+  If CheckBox14 = True Then
+   Range("D9").Value = "Yes"
+   Else
+   Range("D9").Value = ""
+  End If
+  
+  If CheckBox15 = True Then
+   Range("D8").Value = "Yes"
+   Else
+   Range("D8").Value = ""
+  End If
+  
+  If CheckBox16 = True Then
+   Range("B10").Value = "Yes"
+   Else
+   Range("B10").Value = ""
+  End If
+  
+  If CheckBox17 = True Then
+   Range("D10").Value = "Yes"
+   Else
+   Range("D10").Value = ""
+  End If
+End Sub
+
+Private Sub Sulu_Details()
+
+ ThisWorkbook.Worksheets("New paperwork").Activate
+ 
+ '===========================================================
+ ' TRANSFER SULU DETAILS INTO WORKSHEET
+ '===========================================================
+ 
+ ActiveSheet.Range("B15").Select
+ With Selection
+   .Value = PaperWorkForm.TxtGasSupplier.Text
+   .Offset(, 1).Value = PaperWorkForm.TxtElecSupplier.Text
+   .Offset(, 2).Value = PaperWorkForm.TxtWaterSupplier.Text
+ End With
+ 
+ ActiveSheet.Range("B16").Select
+ With Selection
+   .Value = PaperWorkForm.TxtGasSerial.Text
+   .Offset(, 1).Value = PaperWorkForm.TxtElecSerial.Text
+   .Offset(, 2).Value = PaperWorkForm.TxtWaterSerial.Text
+ End With
+ 
+ 
+ ActiveSheet.Range("B17").Select
+ With Selection
+   .Value = PaperWorkForm.TxtGasMeter.Text
+   .Offset(, 1).Value = PaperWorkForm.TxtElecMeter.Text
+   .Offset(, 2).Value = PaperWorkForm.TxtWaterReading.Text
+ End With
+ 
+ '============================================================
+ ' TRANSFER OPTION BUTTON VALUES INTO WORKSHEET
+ '============================================================
+ 
+ ActiveSheet.Range("B18").Select
+ With Selection
+ 
+  If PaperWorkForm.OptGasYesPre = True Then
+   .Value = "Yes"
+  ElseIf PaperWorkForm.OptGasNoPre = True Then
+   .Value = "No"
+ End If
+ 
+ If PaperWorkForm.OptElecYesPre = True Then
+   .Offset(, 1).Value = "Yes"
+  ElseIf PaperWorkForm.OptElecNoPre = True Then
+   .Offset(, 1).Value = "No"
+ End If
+ 
+ End With
+ 
+ActiveSheet.Range("B19").Select
+ With Selection
+ 
+  If PaperWorkForm.OptGasSmartYes = True Then
+   .Value = "Yes"
+  ElseIf PaperWorkForm.OptGasSmartNo = True Then
+   .Value = "No"
+  ElseIf PaperWorkForm.OptGasSmartDnt = True Then
+   .Value = "Don't know"
+  
+ End If
+ 
+ If PaperWorkForm.OptElecSmartYes = True Then
+  .Offset(, 1).Value = "Yes"
+  ElseIf PaperWorkForm.OptElecSmartNo = True Then
+   .Offset(, 1).Value = "No"
+  ElseIf PaperWorkForm.OptElecSmartDnt = True Then
+   .Offset(, 1).Value = "Don't know"
+  
+ End If
+ 
+ End With
+ 
+End Sub
+Sub Reset_Sulu()
+
+ Dim LastRow As Long
+ 
+ With PaperWorkForm
+   '====================================================================
+   ' RESET TEXT BOXES
+   '===================================================================
+ 
+   .TxtGasSupplier.Text = ""
+   .TxtGasSupplier.BackColor = vbWhite
+   .TxtGasSerial.Text = ""
+   .TxtGasSerial.BackColor = vbWhite
+   .TxtGasMeter.Text = ""
+   .TxtGasMeter.BackColor = vbWhite
+   
+   
+   .TxtElecSupplier.Text = ""
+   .TxtElecSupplier.BackColor = vbWhite
+   .TxtElecSerial.Text = ""
+   .TxtElecSerial.BackColor = vbWhite
+   .TxtElecMeter.Text = ""
+   .TxtElecMeter.BackColor = vbWhite
+ 
+   .TxtWaterSupplier.Text = ""
+   .TxtWaterSupplier.BackColor = vbWhite
+   .TxtWaterSerial.Text = ""
+   .TxtWaterSerial.BackColor = vbWhite
+   .TxtWaterReading.Text = ""
+   .TxtWaterReading.BackColor = vbWhite
+ 
+ 
+ 
+   '==================================================
+   ' RESET OPTION BUTTON VALUES
+   '=====================================================
+ 
+   .OptGasYesPre.Value = False
+   .OptGasNoPre.Value = False
+   .OptGasSmartYes.Value = False
+   .OptGasSmartNo.Value = False
+   .OptGasSmartDnt.Value = False
+   
+   .OptElecYesPre.Value = False
+   .OptElecNoPre.Value = False
+   .OptElecSmartYes.Value = False
+   .OptElecSmartNo.Value = False
+   .OptElecSmartDnt.Value = False
+   
+End With
+   
+   '=============================================
+   ' ASSIGNING ROWSOURCE TO LISTDATABASE
+   '===============================================
+   ThisWorkbook.Sheets("DataBase").Activate
+   LastRow = Worksheets("DataBase").Cells(Rows.Count, "A").End(xlUp).Row + 1
+   'MsgBox LastRow
+   
+With PaperWorkForm
+    .LstDataBase.ColumnCount = 12
+    .LstDataBase.ColumnHeads = True
+    .LstDataBase.ColumnWidths = "50,100,120,120,120,120,120,120,120,120,120,120"
+    
+   
+   
+   If LastRow > 2 Then
+   
+    .LstDataBase.RowSource = "DataBase!A3:L" & LastRow
+    
+   Else
+     .LstDataBase.RowSource = "DataBase!A3:L3"
+   End If
+   
+ 
+ End With
+ 
+ '==========================================================================
+ ' RESET NEW PAPERWORK SHEET
+ '=========================================================================
+
+End Sub
+
+Private Sub Submit_Data()
+
+'===================================================
+' Submit sulu data into DataBase worksheet
+'=====================================================
+
+Dim LastRow As Long
+
+  Worksheets("DataBase").Activate
+
+  LastRow = Worksheets("DataBase").Cells(Rows.Count, "A").End(xlUp).Row + 1
+
+  Cells(LastRow, 1).Select
+  
+  With Selection
+
+  '===========================================
+  ' submit gas data
+  '===============================================
+  .Value = "=Row()-2"
+  .Offset(0, 1).Value = PaperWorkForm.TxtAddress.Value
+  .Offset(0, 2).Value = PaperWorkForm.TxtGasSupplier.Value
+  .Offset(0, 3).Value = PaperWorkForm.TxtGasSerial.Value
+
+  If PaperWorkForm.OptGasYesPre = True Then
+    
+   .Offset(0, 4).Value = "Yes"
+   
+ ElseIf PaperWorkForm.OptGasNoPre = True Then
+ 
+   .Offset(0, 4).Value = "No"
+   
+ End If
+ 
+  If PaperWorkForm.OptGasSmartYes = True Then
+    
+   .Offset(0, 5).Value = "Yes"
+   
+ ElseIf PaperWorkForm.OptGasSmartNo = True Then
+ 
+   .Offset(0, 5).Value = "No"
+   
+   
+  ElseIf PaperWorkForm.OptGasSmartDnt = True Then
+  
+    .Offset(0, 5).Value = "Don't know"
+    
+   
+ End If
+ 
+ '=====================================================
+ ' submit Electric data
+ '=====================================================
+ 
+  .Offset(0, 6).Value = PaperWorkForm.TxtElecSupplier.Value
+  .Offset(0, 7).Value = PaperWorkForm.TxtElecSerial.Value
+
+  If PaperWorkForm.OptElecYesPre = True Then
+    
+   .Offset(0, 8).Value = "Yes"
+   
+ ElseIf PaperWorkForm.OptElecNoPre = True Then
+ 
+   .Offset(0, 8).Value = "No"
+   
+ End If
+ 
+  If PaperWorkForm.OptElecSmartYes = True Then
+    
+   .Offset(0, 9).Value = "Yes"
+   
+ ElseIf PaperWorkForm.OptElecSmartNo = True Then
+ 
+   .Offset(0, 9).Value = "No"
+   
+   
+  ElseIf PaperWorkForm.OptElecSmartDnt = True Then
+  
+    .Offset(0, 9).Value = "Don't know"
+    
+  End If
+  
+  
+  '=====================================================
+ ' SUBMIT WATER DATA INTO DATABASE SHEET
+ '===================================================
+ 
+  .Offset(0, 10).Value = PaperWorkForm.TxtWaterSupplier.Value
+  .Offset(0, 11).Value = PaperWorkForm.TxtWaterSerial.Value
+
+
+End With
+
+
+
+End Sub
+ 
+Private Sub CmdDeleteSulu_Click()
+
+Dim sRow As Long
+Dim Response As VbMsgBoxResult
+
+ 
+ If Selected_List = 0 Then
+  
+  ResponseOne = MsgBox("No item is selected.", vbOKCancel + vbInformation, "Delete")
+  
+  Exit Sub
+  
+Else
+  
+ ' MsgBox ("Select row in the list= ") & Selected_List
+  sRow = Selected_List + 2
+  'MsgBox "sRow" & sRow
+  
+   Response = MsgBox("Do you want to delete this record?", vbYesNo + vbInformation, "Delete")
+   
+   If Response = vbNo Then
+   Exit Sub
+   
+   Else
+    
+    ThisWorkbook.Sheets("DataBase").Rows(sRow).Delete
+    
+    MsgBox "Selected record has been deleted successfully", vbOKCancel + vbInformation, "Delete"
+    
+
+  End If
+End If
+
+
+Call Reset_Sulu
+End Sub
+
+Sub CmdExisting_Click()
+
+ Dim ResponseOne As VbMsgBoxResult
+ Dim ResponseTwo As VbMsgBoxResult
+ Dim OptGasPreAnswer As String
+ Dim OptGasSmartAnswer As String
+ Dim OptElecPreAnswer As String
+ Dim OptElecSmartAnswer As String
+ 
+ If Selected_List = 0 Then
+  
+  ResponseOne = MsgBox("No item is selected.", vbOKCancel + vbInformation, "Select")
+  
+  Exit Sub
+  
+  Else
+   '===================================================================
+   ' Transfer data from list to form
+   '===================================================================
+   
+   PaperWorkForm.TxtAddress.Text = Me.LstDataBase.List(Me.LstDataBase.ListIndex, 1)
+   PaperWorkForm.TxtGasSupplier.Text = Me.LstDataBase.List(Me.LstDataBase.ListIndex, 2)
+   PaperWorkForm.TxtGasSerial.Text = Me.LstDataBase.List(Me.LstDataBase.ListIndex, 3)
+   PaperWorkForm.TxtElecSupplier.Text = Me.LstDataBase.List(Me.LstDataBase.ListIndex, 6)
+   PaperWorkForm.TxtElecSerial.Text = Me.LstDataBase.List(Me.LstDataBase.ListIndex, 7)
+   PaperWorkForm.TxtWaterSupplier.Text = Me.LstDataBase.List(Me.LstDataBase.ListIndex, 10)
+    PaperWorkForm.TxtWaterSerial.Text = Me.LstDataBase.List(Me.LstDataBase.ListIndex, 11)
+    
+   '====================================================
+   'Transfer option button values from list into the form
+   '=============================================================
+    OptGasPreAnswer = Me.LstDataBase.List(Me.LstDataBase.ListIndex, 4)
+    
+    If OptGasPreAnswer = "Yes" Then
+    
+      PaperWorkForm.OptGasYesPre = True
+      
+   ElseIf OptGasPreAnswer = "No" Then
+      
+      PaperWorkForm.OptGasNoPre = True
+   End If
+  
+  
+  
+    OptGasSmartAnswer = Me.LstDataBase.List(Me.LstDataBase.ListIndex, 5)
+    If OptGasSmartAnswer = "Yes " Then
+    
+        PaperWorkForm.OptGasSmartYes = True
+    
+    ElseIf OptGasSmartAnswer = "No" Then
+    
+        PaperWorkForm.OptGasSmartNo = True
+    
+    ElseIf OptGasSmartAnswer = "Don't know" Then
+    
+        PaperWorkForm.OptGasSmartDnt = True
+    
+    End If
+ 
+  
+  
+    OptElecPreAnswer = Me.LstDataBase.List(Me.LstDataBase.ListIndex, 8)
+    If OptElecPreAnswer = "Yes" Then
+    
+      PaperWorkForm.OptElecYesPre = True
+      
+   ElseIf OptElecPreAnswer = "No" Then
+      
+      PaperWorkForm.OptElecNoPre = True
+   End If
+  
+  
+   
+   OptElecSmartAnswer = Me.LstDataBase.List(Me.LstDataBase.ListIndex, 9)
+   If OptElecSmartAnswer = "Yes " Then
+    
+      PaperWorkForm.OptElecSmartYes = True
+      
+   ElseIf OptElecSmartAnswer = "No" Then
+   
+     PaperWorkForm.OptElecSmartNo = True
+     
+   ElseIf OptElecSmartAnswer = "Don't know" Then
+    
+     PaperWorkForm.OptElecSmartDnt = True
+     
+   End If
+   
+End If
+
+
+ 'Me.CmdSubmitSulu.Caption = "Update"
+ 
+ ResponseTwo = MsgBox("Please make required changes and press Update.", vbOKCancel + vbInformation, "Update")
+ 
+ 'Call Reset_Sulu
+ 
+
+End Sub
+
+Private Sub CmdNew_Click()
+
+
+Call Reset_Sulu
+
+
+End Sub
+
+Private Sub CmdNext_Click()
+
+  If Me.MultiPage1.Value = (Me.MultiPage1.Count - 1) Then
+  
+    Exit Sub
+    
+ Else
+ 
+   Me.MultiPage1.Value = Me.MultiPage1.Value + 1
+   
+ End If
+
+End Sub
+
+Private Sub CmdPrevious_Click()
+ 
+ Dim PageNo As Integer
+ Dim i As Integer
+ 
+ PageNo = Me.MultiPage1.Value
+ 
+ If Me.MultiPage1.Value = 0 Then
+ 
+    Exit Sub
+ Else
+ 
+   PageNo = PageNo - 1
+   
+   Me.MultiPage1.Value = PageNo
+End If
+
+End Sub
+
+Private Sub CmdPrPreview_Click()
+
+ Unload Me
+ 
+ Worksheets("New paperwork").PrintPreview
+ 
+ ' PaperWorkForm.Show
+ 
+
+End Sub
+
+Private Sub CmdReset_Click()
+
+  '==================================================
+  ' RESET FRAME 1- TENANCY DETAILS
+  '==================================================
+  With PaperWorkForm
+  
+   .TxtAddress.Text = ""
+   .TxtAddress.BackColor = vbWhite
+   
+   .TxtDate.Text = ""
+   .TxtDate.BackColor = vbWhite
+   
+   .TxtDeposit.Text = ""
+   .TxtDeposit.BackColor = vbWhite
+   
+   .TxtRent.Text = ""
+   .TxtRent.BackColor = vbWhite
+   
+   .OptAtlas.Value = False
+   .OptOrient.Value = False
+   
+   .CheckBox7.Value = False
+   .CheckBox8.Value = False
+   .CheckBox9.Value = False
+   .CheckBox10.Value = False
+   .CheckBox11.Value = False
+   .CheckBox12.Value = False
+   .CheckBox13.Value = False
+   .CheckBox14.Value = False
+   .CheckBox15.Value = False
+   .CheckBox16.Value = False
+   .CheckBox17.Value = False
+   
+    
+   '===================================================
+   ' RESET FRAME 3 - TENANTS DETAILS
+   '==================================================
+   
+    .TxtName1.Text = ""
+    .TxtName1.BackColor = vbWhite
+    .TxtName2.Text = ""
+    .TxtName2.BackColor = vbWhite
+    .TxtName3.Text = ""
+    .TxtName3.BackColor = vbWhite
+    .TxtName4.Text = ""
+    .TxtName4.BackColor = vbWhite
+    
+    
+    .TxtNo1.Text = ""
+    .TxtNo1.BackColor = vbWhite
+    .TxtNo2.Text = ""
+    .TxtNo2.BackColor = vbWhite
+    .TxtNo3.Text = ""
+    .TxtNo3.BackColor = vbWhite
+    .TxtNo4.Text = ""
+    .TxtNo4.BackColor = vbWhite
+    
+   '=========================================================
+   ' RESET FRAM4- LANDLORD DETAILS
+   '=========================================================
+   
+    .TxtLandName1.Text = ""
+    .TxtLandName1.BackColor = vbWhite
+    .TxtLandName2 = ""
+    .TxtLandName2.BackColor = vbWhite
+    
+    .TxtLandNo1.Text = ""
+    .TxtLandNo1.BackColor = vbWhite
+    .TxtLandNo2.Text = ""
+    .TxtLandNo2.BackColor = vbWhite
+    
+    .TxtLandId1.Text = ""
+    .TxtLandId1.BackColor = vbWhite
+    .TxtLandId2.Text = ""
+    .TxtLandId2.BackColor = vbWhite
+    
+
+
+   End With
+
+
+   '======================================================
+   ' REST FRAM 2 - SULU REGISTRATION
+   '======================================================
+
+
+     Call Reset_Sulu
+     
+     
+ 
+   '============================================================
+   ' RESET NEW PAPERWORK SHEET
+   '==============================================================
+  
+ Worksheets("New paperwork").Activate
+ 
+ Range("B1").Select
+ With Selection
+ 
+   .ClearContents
+
+ End With
+  
+ 
+ Range("B2:B10").Select
+ 
+ With Selection
+ 
+   .ClearContents
+
+ End With
+  
+ Worksheets("New paperwork").Range("D2:D10").Select
+ 
+ With Selection
+ 
+   .ClearContents
+
+ End With
+  
+ Worksheets("New paperwork").Range("B15:D19").Select
+ 
+ With Selection
+ 
+   .ClearContents
+
+ End With
+  
+  Worksheets("New paperwork").Range("A24:C28").Select
+ 
+ With Selection
+ 
+   .ClearContents
+
+ End With
+  
+  Worksheets("New paperwork").Range("A32:C33").Select
+  With Selection
+  
+    .ClearContents
+  End With
+  
+End Sub
+ 
+ Sub CmdSaveLandlord_Click()
+ 
+ Dim Response As Variant
+ 
+ Response = MsgBox("Do you want to save the details?", vbYesNo + vbInformation, "Save")
+ 
+ If Response = vbNo Then
+ Exit Sub
+ 
+ Else
+ 
+    Call Save_LandlordDetails
+ End If
+ 
+
+
+End Sub
+
+Sub CmdSaveSulu_Click()
+ 
+Dim Response As VbMsgBoxResult
+  
+  Response = MsgBox("Do you want to save the details?", vbYesNo + vbInformation, "Save")
+  
+  If Response = vbNo Then
+  
+     Exit Sub
+     
+  ElseIf Response = vbYes Then
+  
+  
+     Call Sulu_Details
+   
+ End If
+ 
+
+End Sub
+
+Sub CmdSaveTenancy_Click()
+  
+  Dim Response As VbMsgBoxResult
+  
+ Response = MsgBox("Do you want to save the details?", vbYesNo + vbInformation, "Save")
+  
+  If Response = vbNo Then
+  
+   Exit Sub
+  
+  ElseIf Response = vbYes Then
+    
+   Call Save_PropertyDetails
+   
+ End If
+ 
+
+End Sub
+
+Sub CmdSaveTenants_Click()
+ 
+ Dim Response As VbMsgBoxResult
+  
+ Response = MsgBox("Do you want to save the details?", vbYesNo + vbInformation, "Save")
+  
+  If Response = vbNo Then
+  
+   Exit Sub
+  
+  ElseIf Response = vbYes Then
+    
+   Call Save_Tenants
+   
+ End If
+ 
+
+End Sub
+
+Sub CmdSubmitSulu_Click()
+ 
+  Dim Response As VbMsgBoxResult
+  
+  Response = MsgBox("Do you want to submit the data?", vbYesNo + vbInformation, "Submit")
+  
+  If Response = vbNo Then
+   
+     Exit Sub
+  
+  ElseIf Response = vbYes Then
+  
+  Call Submit_Data
+   
+   End If
+ 
+
+
+
+End Sub
+
+
+Private Function Selected_List() As Long
+
+ Dim i As Long
+ Selected_List = 0
+ 
+ If PaperWorkForm.LstDataBase.ListCount < 1 Then
+ 
+   'MsgBox "There is no item in the list."
+   
+   Exit Function
+ End If
+ 
+ 
+ For i = 0 To PaperWorkForm.LstDataBase.ListCount - 1
+ 
+  If PaperWorkForm.LstDataBase.Selected(i) = True Then
+  
+    Selected_List = i + 1
+    Exit For
+ 
+ End If
+
+Next i
+End Function
+
+Private Sub Save_Tenants()
+
+'====================================================
+' Transfer data into worksheet form
+'====================================================
+
+ ThisWorkbook.Sheets("New paperwork").Activate
+ 
+  ActiveSheet.Range("A24").Select
+  With Selection
+  
+    .Value = PaperWorkForm.TxtName1.Text
+    .Offset(1, 0).Value = PaperWorkForm.TxtName2.Text
+    .Offset(2, 0).Value = PaperWorkForm.TxtName3.Text
+    .Offset(3, 0).Value = PaperWorkForm.TxtName4.Text
+    
+    .Offset(0, 1).Value = PaperWorkForm.TxtNo1.Text
+    .Offset(1, 1).Value = PaperWorkForm.TxtNo2.Text
+    .Offset(2, 1).Value = PaperWorkForm.TxtNo3.Text
+    .Offset(3, 1).Value = PaperWorkForm.TxtNo4.Text
+    
+    
+    .Offset(0, 2).Value = PaperWorkForm.TxtId1.Text
+    .Offset(1, 2).Value = PaperWorkForm.TxtId2.Text
+    .Offset(2, 2).Value = PaperWorkForm.TxtId3.Text
+    .Offset(3, 2).Value = PaperWorkForm.TxtId4.Text
+    
+  
+  End With
+
+
+
+End Sub
+
+
+Private Sub CmdUpdate_Click()
+
+Dim AddressCell As Variant
+Dim Response As VbMsgBoxResult
+
+If Selected_List = 0 Then
+  
+  Response = MsgBox("No item is selected.", vbOKCancel + vbInformation, "Select")
+  
+  Exit Sub
+  
+  Else
+Set AddressCell = Worksheets("DataBase").Range("B3:B1020").Find(Me.TxtAddress)
+
+ 'MsgBox AddressCell
+
+ AddressCell.Select
+
+With Selection
+  
+  .Offset(, 1).Value = PaperWorkForm.TxtGasSupplier.Value
+  .Offset(, 2).Value = PaperWorkForm.TxtGasSerial.Value
+  
+  If PaperWorkForm.OptGasYesPre = True Then
+    
+   .Offset(0, 3).Value = "Yes"
+   
+ ElseIf PaperWorkForm.OptGasNoPre = True Then
+ 
+   .Offset(0, 3).Value = "No"
+   
+ End If
+ 
+  If PaperWorkForm.OptGasSmartYes = True Then
+    
+   .Offset(0, 4).Value = "Yes"
+   
+ ElseIf PaperWorkForm.OptGasSmartNo = True Then
+ 
+   .Offset(0, 4).Value = "No"
+   
+   
+  ElseIf PaperWorkForm.OptGasSmartDnt = True Then
+  
+    .Offset(0, 4).Value = "Don't know"
+    
+   
+ End If
+ 
+  
+  .Offset(0, 5).Value = PaperWorkForm.TxtElecSupplier.Value
+  .Offset(0, 6).Value = PaperWorkForm.TxtElecSerial.Value
+
+  If PaperWorkForm.OptElecYesPre = True Then
+    
+   .Offset(0, 7).Value = "Yes"
+   
+ ElseIf PaperWorkForm.OptElecNoPre = True Then
+ 
+   .Offset(0, 7).Value = "No"
+   
+ End If
+ 
+  If PaperWorkForm.OptElecSmartYes = True Then
+    
+   .Offset(0, 8).Value = "Yes"
+   
+ ElseIf PaperWorkForm.OptElecSmartNo = True Then
+ 
+   .Offset(0, 8).Value = "No"
+   
+   
+  ElseIf PaperWorkForm.OptElecSmartDnt = True Then
+  
+    .Offset(0, 89).Value = "Don't know"
+    
+  End If
+  
+  
+  '=====================================================
+ ' SUBMIT WATER DATA INTO DATABASE SHEET
+ '===================================================
+ 
+  .Offset(0, 9).Value = PaperWorkForm.TxtWaterSupplier.Value
+  .Offset(0, 10).Value = PaperWorkForm.TxtWaterSerial.Value
+
+End With
+End If
+
+End Sub
+
+
+
+Private Sub Save_LandlordDetails()
+
+'========================================================
+'Transfer Data into Worksheet form
+'========================================================
+ThisWorkbook.Sheets("New paperwork").Activate
+ 
+  ActiveSheet.Range("A32").Select
+  With Selection
+  
+    .Value = PaperWorkForm.TxtLandName1.Text
+    .Offset(1, 0).Value = PaperWorkForm.TxtLandName2.Text
+    
+    
+    .Offset(0, 1).Value = PaperWorkForm.TxtLandNo1.Text
+    .Offset(1, 1).Value = PaperWorkForm.TxtLandNo2.Text
+    
+    .Offset(0, 2).Value = PaperWorkForm.TxtLandId1.Text
+    .Offset(1, 2).Value = PaperWorkForm.TxtLandId2.Text
+        
+  
+  End With
+
+
+End Sub
+
