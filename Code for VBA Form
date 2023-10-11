@@ -1,0 +1,57 @@
+Sub UserForm_Initialize()
+
+'=========================================
+' INTIALISE AND RESET THE FORM
+'=========================================
+  CmdSave.Enabled = False
+  CmdClose.Enabled = False
+  
+  With PaperWorkForm
+  
+    .TxtAddress.Text = ""
+    .TxtAddress.BackColor = vbWhite
+    
+    .OptAtlas.Value = False
+    .OptOrient = False
+    
+    .TxtDate.Text = ""
+    .TxtDate.BackColor = vbWhite
+    
+    .TxtRent.Text = ""
+    .TxtRent.BackColor = vbWhite
+    
+    .TxtDeposit.Text = ""
+    .TxtDeopsit.BackColor = vbWhite
+    
+    .CheckBox7.Value = False
+    .CheckBox8.Value = False
+    .CheckBox9.Value = False
+    .CheckBox10.Value = False
+    .CheckBox11.Value = False
+    .CheckBox12.Value = False
+    .CheckBox13.Value = False
+    .CheckBox14.Value = False
+    .CheckBox15.Value = False
+    .CheckBox16.Value = False
+    .CheckBox17.Value = False
+
+
+  End With
+
+CmdSave.Enabled = False
+CmdClose.Enabled = False
+
+End Sub
+-----------------------------------------------------------
+Sub CallUserFrom()
+
+
+PaperWorkForm.Show
+
+End Sub
+----------------------------------------------------------
+Sub CallUserForm1()
+
+UserForm1.Show
+ 
+End Sub
